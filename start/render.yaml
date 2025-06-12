@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: adonisbackend
+    env: node
+    buildCommand: |
+      echo "APP_KEY=$APP_KEY" > .env
+      echo "PORT=3333" >> .env
+      echo "HOST=0.0.0.0" >> .env
+      echo "NODE_ENV=production" >> .env
+      npm install
+    startCommand: node server.js
+    envVars:
+      - key: APP_KEY
+        value: base64:Q2FzZVNlY3VyZUtleUluY29ycmVjdE1pZ3JhdGlvbg==
