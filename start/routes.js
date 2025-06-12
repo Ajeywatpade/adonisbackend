@@ -182,8 +182,13 @@ Route.put('/users/:email', async ({ params, request, response }) => {
 })
 
 Route.get('/api/total-employees', async ({ response }) => {
-  const User = use('App/Models/User') // If you're using AdonisJS v4
-  const totalEmployees = await User.query().count('* as total')
-  return response.json({ totalEmployees: totalEmployees[0].total })
+  const User = use('App/Models/User')
+  const totalEmployees = await User.query().count('* as count')
+  return response.json({ count: totalEmployees[0].count })
 })
+
+Route.post('/api/report', 'ReportController.store')
+Route.get('/api/reports', 'ReportController.index')
+
+
 

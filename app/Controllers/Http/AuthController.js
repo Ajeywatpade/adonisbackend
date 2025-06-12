@@ -4,43 +4,30 @@ const User = use('App/Models/User')
 const Hash = use('Hash')
 
 class AuthController {
-  async register({ request, response }) {
-    const data = request.only(['username', 'email', 'password'])
-    data.password = await Hash.make(data.password)
-    try {
-      await User.create(data)
-      return response.status(201).send({ message: 'User registered successfully' })
-    } catch (error) {
-      return response.status(400).send({ error: 'Registration failed' })
-    }
-  }
-
   async login({ request, auth, response }) {
     const { username, password } = request.all()
-    const user = await User.findBy('username', username)
 
-    if (!user) {
-      return response.status(400).send({ error: 'Invalid username or password' })
+    try {
+      const user = await User.query().where('username', username).first()
+
+      if (!user) {
+        return response.status(400).json({ message: 'User not found' })
+      }
+
+      const isValid = await Hash.verify(password, user.password)
+
+      if (!isValid) {
+        return response.status(400).json({ message: 'Invalid password' })
+      }
+
+      const token = await auth.generate(user)
+      return response.json({ token })
+
+    } catch (error) {
+      console.error(error)
+      return response.status(500).json({ message: 'Login error' })
     }
-
-    const passwordVerified = await Hash.verify(password, user.password)
-    if (!passwordVerified) {
-      return response.status(400).send({ error: 'Invalid username or password' })
-    }
-
-    const token = await auth.generate(user)
-    return response.send({ token })
   }
-
-  async logout({ auth, response }) {
-  try {
-    await auth.logout() // This works only if you're using sessions
-    return response.json({ message: 'Logged out successfully' })
-  } catch (error) {
-    return response.status(400).json({ error: 'Logout failed' })
-  }
-}
-
 }
 
 module.exports = AuthController
