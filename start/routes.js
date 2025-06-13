@@ -192,9 +192,16 @@ Route.get('/test-db', async () => {
     const users = await Database.from('users').select('*')
     return { success: true, count: users.length, users }
   } catch (error) {
-    return { success: false, error: error.message }
+    return {
+      success: false,
+      name: error.name,
+      code: error.code,
+      message: error.message,
+      stack: error.stack,
+    }
   }
 })
+
 
 Route.post('/api/report', 'ReportController.store')
 Route.get('/api/reports', 'ReportController.index')
