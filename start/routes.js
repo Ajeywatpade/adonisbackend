@@ -202,15 +202,11 @@ Route.get('/test-db', async () => {
     }
   }
 })
-Route.any('*', ({ response }) => {
-  return response.download(Helpers.publicPath('index.html'))
-})
 
 
 Route.post('/api/report', 'ReportController.store')
 Route.get('/api/reports', 'ReportController.index')
-Route.get('/api/report', 'ReportController.index')
-Route.options('/api/report', () => {}).middleware([])
+
 
 
 
