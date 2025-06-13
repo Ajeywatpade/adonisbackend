@@ -209,6 +209,7 @@ Route.any('*', ({ response }) => {
 
 Route.post('/api/report', 'ReportController.store')
 Route.get('/api/reports', 'ReportController.index')
+Route.get('/api/report', 'ReportController.index')
 
 
 
