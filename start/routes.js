@@ -17,6 +17,7 @@
 const Route = use('Route')
 const User = use('App/Models/User')
 const Database = use('Database')
+const Helpers = use('Helpers')
 
 Route.post('/register', async ({ request, response }) => {
   try {
