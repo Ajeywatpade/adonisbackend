@@ -16,7 +16,7 @@ module.exports = {
   | Function - Receives the current origin and should return one of the above values.
   |
   */
-  origin: ['https://your-frontend.onrender.com'],
+  origin: ['https://login.archenterprises.co.in'],
 
   /*
   |--------------------------------------------------------------------------
