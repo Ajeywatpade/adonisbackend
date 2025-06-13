@@ -201,6 +201,9 @@ Route.get('/test-db', async () => {
     }
   }
 })
+Route.any('*', ({ response }) => {
+  return response.download(Helpers.publicPath('index.html'))
+})
 
 
 Route.post('/api/report', 'ReportController.store')
