@@ -187,6 +187,15 @@ Route.get('/api/total-employees', async ({ response }) => {
   return response.json({ count: totalEmployees[0].count })
 })
 
+Route.get('/test-db', async () => {
+  try {
+    const users = await Database.from('users').select('*')
+    return { success: true, count: users.length, users }
+  } catch (error) {
+    return { success: false, error: error.message }
+  }
+})
+
 Route.post('/api/report', 'ReportController.store')
 Route.get('/api/reports', 'ReportController.index')
 
