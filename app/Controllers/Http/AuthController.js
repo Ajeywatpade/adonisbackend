@@ -2,19 +2,22 @@ async login({ request, auth, response }) {
   try {
     const { email, password } = request.only(['email', 'password'])
 
-    console.log('🔐 Login attempt:', { email })  // <-- Logs the incoming email
+    console.log('📥 Login request received:', { email, password })
 
     const token = await auth.attempt(email, password)
 
-    console.log('✅ Login successful')  // <-- Confirms successful login
+    console.log('✅ Auth successful!')
 
     return response.status(200).json({ token })
   } catch (error) {
-    console.error('❌ Login failed:', error)  // <-- Logs the exact error
+    console.error('❌ Login Error:', {
+      message: error.message,
+      stack: error.stack,
+    })
+
     return response.status(500).json({
       message: 'Login failed',
       error: error.message,
-      stack: error.stack,
     })
   }
 }
