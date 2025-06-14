@@ -208,6 +208,12 @@ Route.post('/api/report', 'ReportController.store')
 Route.get('/api/reports', 'ReportController.index')
 
 
+Route.get('/api/leave-types', 'LeaveTypeController.index')
+Route.post('/api/leave-types', 'LeaveTypeController.store')
+Route.put('leave-types/:id', 'LeaveTypeController.update')
+Route.delete('leave-types/:id', 'LeaveTypeController.destroy') 
+
+
 
 
 
