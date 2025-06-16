@@ -226,12 +226,10 @@ Route.get('/announcements', 'AnnouncementController.index')
 // Attendance Routes
 Route.post('/attendances', 'AttendanceController.store')
 
-const Application = use('Adonis/Src/Application')
-
-// Catch-all route for Vue history mode
 Route.any('*', async ({ response }) => {
-  return response.download(Application.publicPath('index.html'))
+  return response.download(Helpers.publicPath('index.html'))
 })
+
 
 
 
