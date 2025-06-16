@@ -219,6 +219,11 @@ Route.get('/departments', 'DepartmentController.index')
 Route.put('/departments/:id', 'DepartmentController.update')
 Route.delete('/departments/:id', 'DepartmentController.destroy')
 
+// Announcement Routes
+Route.post('/announcements', 'AnnouncementController.store')
+Route.get('/announcements', 'AnnouncementController.index')
+
+
 
 
 
