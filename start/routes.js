@@ -138,6 +138,6 @@ Route.get('/employee', 'EmployeeController.index')
 Route.get('/employees', 'EmployeeController.index')
 
 
-Route.any('*', ({ response }) => {
+Route.any('/dashboard', ({ response }) => {
   return response.download(Helpers.publicPath('index.html'))
 })
