@@ -213,6 +213,12 @@ Route.post('/api/leave-types', 'LeaveTypeController.store')
 Route.put('leave-types/:id', 'LeaveTypeController.update')
 Route.delete('leave-types/:id', 'LeaveTypeController.destroy') 
 
+// Department Routes
+Route.post('/departments', 'DepartmentController.store')
+Route.get('/departments', 'DepartmentController.index')
+Route.put('/departments/:id', 'DepartmentController.update')
+Route.delete('/departments/:id', 'DepartmentController.destroy')
+
 
 
 
