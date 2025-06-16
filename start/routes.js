@@ -226,6 +226,14 @@ Route.get('/announcements', 'AnnouncementController.index')
 // Attendance Routes
 Route.post('/attendances', 'AttendanceController.store')
 
+import Route from '@ioc:Adonis/Core/Route'
+import Application from '@ioc:Adonis/Core/Application'
+
+// Catch-all route for SPA
+Route.get('*', async ({ response }) => {
+  return response.download(Application.publicPath('index.html'))
+})
+
 
 
 
