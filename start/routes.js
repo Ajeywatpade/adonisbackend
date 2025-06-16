@@ -228,10 +228,11 @@ Route.post('/attendances', 'AttendanceController.store')
 
 const Application = use('Adonis/Src/Application')
 
-// Catch-all route for SPA
-Route.get('*', async ({ response }) => {
+// Catch-all route for Vue history mode
+Route.any('*', async ({ response }) => {
   return response.download(Application.publicPath('index.html'))
 })
+
 
 
 
