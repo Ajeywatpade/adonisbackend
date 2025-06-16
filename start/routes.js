@@ -137,7 +137,6 @@ Route.post('/employee', 'EmployeeController.store')
 Route.get('/employee', 'EmployeeController.index')
 Route.get('/employees', 'EmployeeController.index')
 
-const Helpers = use('Helpers')
 
 Route.any('*', ({ response }) => {
   return response.download(Helpers.publicPath('index.html'))
